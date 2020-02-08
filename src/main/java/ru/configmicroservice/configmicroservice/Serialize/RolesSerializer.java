@@ -1,16 +1,16 @@
-package  ru.configmicroservice.configmicroservice.Serialize;
+package ru.configmicroservice.configmicroservice.Serialize;
 
-import java.util.Map;
 import org.apache.kafka.common.serialization.Serializer;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
- 
 
+import java.util.*;
 
-public class PortModelSerializer<T> implements Serializer<T> {
-	
+public class RolesSerializer implements Serializer<List<String>>{
+
 	@Override
-	public byte[] serialize(String topic, T data) {
-		 byte[] retVal = null;
+	public byte[] serialize(String topic, List<String> data) {
+		byte[] retVal = null;
 		   ObjectMapper objectMapper = new ObjectMapper();
 		   try {
 		     retVal = objectMapper.writeValueAsString(data).getBytes();
@@ -18,5 +18,6 @@ public class PortModelSerializer<T> implements Serializer<T> {
 		     e.printStackTrace();
 		   }
 		   return retVal;
-	}		
+	}
+
 }
