@@ -11,6 +11,7 @@ import ru.configmicroservice.configmicroservice.Classes.KafkaConfig;
 import ru.configmicroservice.configmicroservice.Classes.Roles;
 import ru.configmicroservice.configmicroservice.Entitys.Subject;
 import ru.configmicroservice.configmicroservice.Models.PortModel;
+import ru.configmicroservice.configmicroservice.Repositories.SubjectRepository;
 import ru.configmicroservice.configmicroservice.Services.SubjectService;
 
 
@@ -19,6 +20,9 @@ public class ConfigController {
 
 	@Autowired
 	private KafkaConfig kafka;
+	
+	@Autowired 
+	private SubjectRepository r;
 	
 	@Autowired
 	private Roles roles;
@@ -42,6 +46,15 @@ public class ConfigController {
 		roles.setAllRoleNames(_roles);
 		kafka.sendRoles();
 		return new ResponseEntity<>(_roles,HttpStatus.OK);
+	}
+	
+	@PostMapping("/addnewsubject")
+	public Subject addSubjects(@RequestBody Subject _subject)
+	{
+		r.save(_subject);
+		kafka.sendSubjects();
+		return _subject;
+		
 	}
 	
 	

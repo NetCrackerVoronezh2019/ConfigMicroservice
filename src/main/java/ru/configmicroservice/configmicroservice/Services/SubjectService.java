@@ -19,7 +19,6 @@ public class SubjectService {
 		List<Subject> ex= subjectRepository.findAll();
 		SubjectServiceX x=new SubjectServiceX();
 		x.subjects=ex;
-		System.out.println(ex.get(0).getName());
 		return x;
 	}
 	

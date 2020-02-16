@@ -1,4 +1,5 @@
 package ru.configmicroservice.configmicroservice.Serialize;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import org.apache.kafka.common.serialization.Serializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,9 +13,9 @@ public class SubjectsSerializer implements Serializer<SubjectServiceX> {
 	@Override
 	public byte[] serialize(String topic, SubjectServiceX data) {
 		byte[] retVal = null;
-		   ObjectMapper objectMapper = new ObjectMapper();
+		   ObjectMapper objectMapper = new ObjectMapper();		   
 		   try {
-		     retVal = objectMapper.writeValueAsString(data).getBytes();
+		     retVal = objectMapper.writeValueAsString(data).getBytes(StandardCharsets.UTF_8);
 		   } catch (Exception e) {
 		     e.printStackTrace();
 		   }

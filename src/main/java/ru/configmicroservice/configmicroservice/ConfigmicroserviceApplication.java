@@ -13,7 +13,7 @@ public class ConfigmicroserviceApplication {
 		ConfigurableApplicationContext app=SpringApplication.run(ConfigmicroserviceApplication.class, args);
 		KafkaConfig kafka=(KafkaConfig)app.getBean("kafkaConfig");
 		kafka.sendRoles();
-	//	kafka.sendSubjects();
+	    kafka.sendSubjects();
 	}
 
 }
