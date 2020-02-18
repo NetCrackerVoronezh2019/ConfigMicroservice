@@ -1,4 +1,4 @@
-package ru.configmicroservice.configmicroservice.Classes;
+package ru.configmicroservice.configmicroservice.PropertiesConfigurations;
 import java.util.*;
 import java.util.stream.Collectors;
 

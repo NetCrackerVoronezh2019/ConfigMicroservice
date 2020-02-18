@@ -1,13 +1,21 @@
 package ru.configmicroservice.configmicroservice.Models;
 
 public class PortModel {
-
-	public MicroservicesEnum microServiceName;
-	public String port;
 	
-	public PortModel(MicroservicesEnum microServiceName,String port)
-	{
-		this.microServiceName=microServiceName;
-		this.port=port;
+	private Microservices microserviceName;
+	private Integer port;
+	
+	public Microservices getMicroserviceName() {
+		return microserviceName;
 	}
+	public void setMicroserviceName(Microservices microserviceName) {
+		this.microserviceName = microserviceName;
+	}
+	public Integer getPort() {
+		return port;
+	}
+	public void setPort(Integer port) {
+		this.port = port;
+	}
+	
 }

@@ -7,34 +7,46 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import ru.configmicroservice.configmicroservice.Classes.KafkaConfig;
-import ru.configmicroservice.configmicroservice.Classes.Roles;
 import ru.configmicroservice.configmicroservice.Entitys.Subject;
+import ru.configmicroservice.configmicroservice.Kafka.KafkaConfig;
 import ru.configmicroservice.configmicroservice.Models.PortModel;
+import ru.configmicroservice.configmicroservice.PropertiesConfigurations.Ports;
+import ru.configmicroservice.configmicroservice.PropertiesConfigurations.Roles;
 import ru.configmicroservice.configmicroservice.Repositories.SubjectRepository;
 import ru.configmicroservice.configmicroservice.Services.SubjectService;
 
 
 @RestController
 public class ConfigController {
+	
+   @Autowired
+   private Ports ports;
 
 	@Autowired
 	private KafkaConfig kafka;
 	
 	@Autowired 
-	private SubjectRepository r;
+	private SubjectService subjectService;
 	
 	@Autowired
 	private Roles roles;
 	
+	
+	
 	@PostMapping("/setPortModel")
-	public PortModel setPortModel(@RequestBody PortModel portModel)
+	public void setPortModel(@RequestBody PortModel portModel)
 	{    		
-		kafka.newPort(portModel,"ports_topic");	
-        return portModel;
+		kafka.newPort();	
+        ports.setPort(portModel);
 	}
 	
-	@GetMapping("/roles")
+	@GetMapping("getallsubjects")
+	public List<Subject> getAllSubjects()
+	{
+		return subjectService.findAll();
+	}
+	
+	@GetMapping("/getallroles")
 	public List<String> getAllRoles()
 	{
 		return roles.getAllRoleNames();
@@ -51,7 +63,7 @@ public class ConfigController {
 	@PostMapping("/addnewsubject")
 	public Subject addSubjects(@RequestBody Subject _subject)
 	{
-		r.save(_subject);
+		subjectService.save(_subject);
 		kafka.sendSubjects();
 		return _subject;
 		
