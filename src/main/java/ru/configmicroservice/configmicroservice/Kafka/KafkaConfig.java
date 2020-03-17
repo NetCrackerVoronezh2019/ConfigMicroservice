@@ -27,7 +27,7 @@ public  class KafkaConfig{
 			KafkaProducers.StringProducer(topics.getSubjectTopic(), "New Subjects");
 	}
 	
-	public void newPort()
+	public void newMicroserviceInfo()
 	{
 		KafkaProducers.StringProducer(topics.getPortTopic(), "New Ports");
 	}

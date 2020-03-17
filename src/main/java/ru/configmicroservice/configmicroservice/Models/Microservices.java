@@ -6,4 +6,5 @@ public enum Microservices {
 	ADVERTISEMENT,
 	CONVERSATION,
 	USERANDGROUPS,
+	AMAZON,
 }

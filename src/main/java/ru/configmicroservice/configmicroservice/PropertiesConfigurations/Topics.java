@@ -6,15 +6,15 @@ import org.springframework.stereotype.*;
 @ConfigurationProperties(prefix="topics")
 public class Topics {
 
-	private String portTopic;
+	private String microservicesInfoTopic;
 	private String roleTopic;
 	private String subjectTopic;
 	
 	public String getPortTopic() {
-		return portTopic;
+		return microservicesInfoTopic;
 	}
 	public void setPortTopic(String portTopic) {
-		this.portTopic = portTopic;
+		this.microservicesInfoTopic = portTopic;
 	}
 	public String getRoleTopic() {
 		return roleTopic;

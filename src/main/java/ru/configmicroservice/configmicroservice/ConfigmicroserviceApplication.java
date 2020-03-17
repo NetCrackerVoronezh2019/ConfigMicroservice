@@ -14,6 +14,7 @@ public class ConfigmicroserviceApplication {
 	    KafkaConfig kafka=(KafkaConfig)app.getBean("kafkaConfig");
 		kafka.sendRoles();
 	    kafka.sendSubjects();
+	    kafka.newMicroserviceInfo();
 	}
 
 }

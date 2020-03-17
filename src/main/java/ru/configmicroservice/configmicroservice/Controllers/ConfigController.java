@@ -9,10 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import ru.configmicroservice.configmicroservice.Entitys.Subject;
 import ru.configmicroservice.configmicroservice.Kafka.KafkaConfig;
-import ru.configmicroservice.configmicroservice.Models.PortModel;
-import ru.configmicroservice.configmicroservice.PropertiesConfigurations.Ports;
+import ru.configmicroservice.configmicroservice.Models.MicroserviceInfo;
+import ru.configmicroservice.configmicroservice.PropertiesConfigurations.MicroservicesProp;
 import ru.configmicroservice.configmicroservice.PropertiesConfigurations.Roles;
-import ru.configmicroservice.configmicroservice.Repositories.SubjectRepository;
 import ru.configmicroservice.configmicroservice.Services.SubjectService;
 
 
@@ -20,7 +19,7 @@ import ru.configmicroservice.configmicroservice.Services.SubjectService;
 public class ConfigController {
 	
    @Autowired
-   private Ports ports;
+   private MicroservicesProp microservicesProp;
 
 	@Autowired
 	private KafkaConfig kafka;
@@ -34,12 +33,22 @@ public class ConfigController {
 	
 	
 	@PostMapping("/setPortModel")
-	public void setPortModel(@RequestBody PortModel portModel)
+	public void setPortModel(@RequestBody MicroserviceInfo portModel)
 	{    		
-		kafka.newPort();	
-        ports.setPort(portModel);
+		kafka.newMicroserviceInfo();	
+		System.out.println("Send port");
+		System.out.println(portModel.getToken());
+		System.out.println(portModel.getPort());
+		System.out.println(portModel.getMicroserviceName());
+		microservicesProp.setPort(portModel);
 	}
 	
+	@GetMapping("/getallports")
+	public List<MicroserviceInfo> getAllPorts()
+	{
+		return microservicesProp.getAllPorts();
+		
+	}
 	@GetMapping("getallsubjects")
 	public List<Subject> getAllSubjects()
 	{
