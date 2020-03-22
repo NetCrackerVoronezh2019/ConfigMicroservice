@@ -25,31 +25,30 @@ public class MicroservicesProp {
 	
 	
 	
-	public List<MicroserviceInfo> getAllPorts()
+	public List<MicroserviceInfo> getAllMicroservicesInfo()
 	{
 		List<MicroserviceInfo> allModels=new ArrayList<>();
 		MicroserviceInfo main=new MicroserviceInfo(Microservices.MAIN,this.getMain(),this.getMain_token());
 		MicroserviceInfo advertisement=new MicroserviceInfo(Microservices.ADVERTISEMENT,this.getAdvertisement(),this.getAdvertisement_token());
 		MicroserviceInfo amazon=new MicroserviceInfo(Microservices.AMAZON,this.getAmazon(),this.getAmazon_token());
 		MicroserviceInfo conversation=new MicroserviceInfo(Microservices.CONVERSATION,this.getConversation(),this.getConversation_token());
+		MicroserviceInfo userAndGroups=new MicroserviceInfo(Microservices.USERANDGROUPS,this.getUserAndgroups(),this.getUserAndgroups_token());
+		
 		allModels.add(main);
 		allModels.add(advertisement);
 		allModels.add(amazon);
 		allModels.add(conversation);
+		allModels.add(userAndGroups);
 		return allModels;
 	}
 
-	public void setPort(MicroserviceInfo portModel)
+	public void setInfo(MicroserviceInfo portModel)
 	{
 		
 		if(portModel!=null)
 		{
 			if(portModel.getMicroserviceName()!=null && portModel.getPort()!=null && portModel.getToken()!=null)
 			{
-				System.out.println("В методе");
-				System.out.println(portModel.getToken());
-				System.out.println(portModel.getPort());
-				System.out.println(portModel.getMicroserviceName());
 				
 				if(portModel.getMicroserviceName()==Microservices.MAIN)
 				{
@@ -72,8 +71,21 @@ public class MicroservicesProp {
 						}
 						else
 						{
-							this.setUserAndgroups(portModel.getPort());
-							this.setUserAndgroups_token(portModel.getToken());
+							if(portModel.getMicroserviceName()==Microservices.USERANDGROUPS)
+							{
+								this.setUserAndgroups(portModel.getPort());
+								this.setUserAndgroups_token(portModel.getToken());
+							}
+							
+							else
+							{
+								if(portModel.getMicroserviceName()==Microservices.AMAZON)
+								{
+									this.setAmazon(portModel.getPort());
+									this.setAmazon_token(portModel.getToken());
+								}
+							}
+							
 						}
 					}
 				}

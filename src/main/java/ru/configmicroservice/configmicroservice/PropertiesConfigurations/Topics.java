@@ -10,10 +10,10 @@ public class Topics {
 	private String roleTopic;
 	private String subjectTopic;
 	
-	public String getPortTopic() {
+	public String getMicroservicesInfoTopic() {
 		return microservicesInfoTopic;
 	}
-	public void setPortTopic(String portTopic) {
+	public void setMicroservicesInfoTopic(String portTopic) {
 		this.microservicesInfoTopic = portTopic;
 	}
 	public String getRoleTopic() {

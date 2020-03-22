@@ -29,7 +29,7 @@ public  class KafkaConfig{
 	
 	public void newMicroserviceInfo()
 	{
-		KafkaProducers.StringProducer(topics.getPortTopic(), "New Ports");
+		KafkaProducers.StringProducer(topics.getMicroservicesInfoTopic(), "New Ports");
 	}
 	
 }

@@ -32,36 +32,34 @@ public class ConfigController {
 	
 	
 	
-	@PostMapping("/setPortModel")
-	public void setPortModel(@RequestBody MicroserviceInfo portModel)
+	@PostMapping("/setInfoModel")
+	public ResponseEntity<?> setPortModel(@RequestBody MicroserviceInfo microInfo)
 	{    		
-		kafka.newMicroserviceInfo();	
-		System.out.println("Send port");
-		System.out.println(portModel.getToken());
-		System.out.println(portModel.getPort());
-		System.out.println(portModel.getMicroserviceName());
-		microservicesProp.setPort(portModel);
+			
+		microservicesProp.setInfo(microInfo);
+		kafka.newMicroserviceInfo();
+		return new ResponseEntity<>(null,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getallports")
-	public List<MicroserviceInfo> getAllPorts()
+	@GetMapping("/getAllInfo")
+	public ResponseEntity<List<MicroserviceInfo>> getAllMicroservicesInfo()
 	{
-		return microservicesProp.getAllPorts();
+		return new ResponseEntity<>(microservicesProp.getAllMicroservicesInfo(),HttpStatus.OK);
 		
 	}
-	@GetMapping("getallsubjects")
-	public List<Subject> getAllSubjects()
+	@GetMapping("getAllSubjects")
+	public ResponseEntity<List<Subject>> getAllSubjects()
 	{
-		return subjectService.findAll();
+		return new ResponseEntity<>(subjectService.findAll(),HttpStatus.OK);
 	}
 	
-	@GetMapping("/getallroles")
-	public List<String> getAllRoles()
+	@GetMapping("/getAllRoles")
+	public ResponseEntity<List<String>> getAllRoles()
 	{
-		return roles.getAllRoleNames();
+		return new ResponseEntity<>(roles.getAllRoleNames(),HttpStatus.OK);
 	}
 	
-	@PostMapping("/setroles")
+	@PostMapping("/setRoles")
 	public  ResponseEntity<List<String>> setRoles(@RequestBody List<String> _roles)
 	{
 		roles.setAllRoleNames(_roles);
@@ -69,12 +67,12 @@ public class ConfigController {
 		return new ResponseEntity<>(_roles,HttpStatus.OK);
 	}
 	
-	@PostMapping("/addnewsubject")
-	public Subject addSubjects(@RequestBody Subject _subject)
+	@PostMapping("/setNewSubject")
+	public ResponseEntity<Subject> addSubjects(@RequestBody Subject _subject)
 	{
 		subjectService.save(_subject);
 		kafka.sendSubjects();
-		return _subject;
+		return new ResponseEntity<>(_subject,HttpStatus.OK);
 		
 	}
 	
