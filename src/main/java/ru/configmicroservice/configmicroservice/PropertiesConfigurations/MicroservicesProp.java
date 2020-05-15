@@ -47,7 +47,7 @@ public class MicroservicesProp {
 		
 		if(portModel!=null)
 		{
-			if(portModel.getMicroserviceName()!=null && portModel.getPort()!=null && portModel.getToken()!=null)
+			if(portModel.getMicroserviceName()!=null && portModel.getPort()!=null)
 			{
 				
 				if(portModel.getMicroserviceName()==Microservices.MAIN)

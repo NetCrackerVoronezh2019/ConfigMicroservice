@@ -10,11 +10,21 @@ import ru.configmicroservice.configmicroservice.Kafka.KafkaConfig;
 public class ConfigmicroserviceApplication {
 
 	public static void main(String[] args) {
+		
+	
 		ConfigurableApplicationContext app=SpringApplication.run(ConfigmicroserviceApplication.class, args);
-	    KafkaConfig kafka=(KafkaConfig)app.getBean("kafkaConfig");
-		kafka.sendRoles();
-	    kafka.sendSubjects();
-	    kafka.newMicroserviceInfo();
+		try {
+		    KafkaConfig kafka=(KafkaConfig)app.getBean("kafkaConfig");
+			kafka.sendRoles();
+			kafka.sendSubjects();
+		    kafka.newMicroserviceInfo();
+		}
+		catch(Exception ex)
+		{
+			
+		}
+		
 	}
+		
 
 }
