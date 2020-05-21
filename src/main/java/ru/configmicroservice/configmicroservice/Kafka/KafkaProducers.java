@@ -15,7 +15,7 @@ public class KafkaProducers {
 		KafkaProducer<String,String> producer = null;
 		try
 		{
-			String bootstrapServers="192.168.99.101:9092";
+			String bootstrapServers="192.168.99.100:9092";
 	    	Properties properties=new Properties();
 	    	properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServers);
 	    	properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());

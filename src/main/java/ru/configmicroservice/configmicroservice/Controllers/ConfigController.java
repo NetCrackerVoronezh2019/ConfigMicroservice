@@ -12,6 +12,7 @@ import ru.configmicroservice.configmicroservice.Kafka.KafkaConfig;
 import ru.configmicroservice.configmicroservice.Models.MicroserviceInfo;
 import ru.configmicroservice.configmicroservice.PropertiesConfigurations.MicroservicesProp;
 import ru.configmicroservice.configmicroservice.PropertiesConfigurations.Roles;
+import ru.configmicroservice.configmicroservice.PropertiesConfigurations.Subjects;
 import ru.configmicroservice.configmicroservice.Services.SubjectService;
 
 
@@ -30,6 +31,9 @@ public class ConfigController {
 	@Autowired
 	private Roles roles;
 	
+	@Autowired
+	private Subjects subjects;
+	
 	
 	
 	@PostMapping("/setInfoModel")
@@ -47,11 +51,15 @@ public class ConfigController {
 		return new ResponseEntity<>(microservicesProp.getAllMicroservicesInfo(),HttpStatus.OK);
 		
 	}
+	
+	
 	@GetMapping("getAllSubjects")
-	public ResponseEntity<List<Subject>> getAllSubjects()
+	public ResponseEntity<List<String>> getAllSubjects()
 	{
-		return new ResponseEntity<>(subjectService.findAll(),HttpStatus.OK);
+		return new ResponseEntity<>(subjects.getAllSubjects(),HttpStatus.OK);
 	}
+	
+	
 	
 	@GetMapping("/getAllRoles")
 	public ResponseEntity<List<String>> getAllRoles()

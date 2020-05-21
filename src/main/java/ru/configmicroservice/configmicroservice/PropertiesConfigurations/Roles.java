@@ -18,8 +18,4 @@ public class Roles {
 	public void setAllRoleNames(List<String> allRoleNames) {
 		this.allRoleNames = allRoleNames;
 	}
-	
-	
-
-	
 }
